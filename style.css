@@ -1,0 +1,274 @@
+/* ============================================================
+   Amazon Review Sentiment Analysis — Custom Theme
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hide default Streamlit chrome for a cleaner, more professional look */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* ---------------- App background ---------------- */
+.stApp {
+    background: linear-gradient(180deg, #f7f8fc 0%, #eef0fb 100%);
+}
+
+/* ---------------- Force readable text everywhere in the main area ----------
+   This fixes headings/paragraphs that were invisible when the browser/OS is
+   in dark mode (Streamlit was inheriting a light-on-light color scheme). */
+[data-testid="stAppViewContainer"] h1,
+[data-testid="stAppViewContainer"] h2,
+[data-testid="stAppViewContainer"] h3,
+[data-testid="stAppViewContainer"] h4,
+[data-testid="stAppViewContainer"] h5,
+[data-testid="stAppViewContainer"] p,
+[data-testid="stAppViewContainer"] li,
+[data-testid="stAppViewContainer"] label,
+[data-testid="stAppViewContainer"] span {
+    color: #1f1147;
+}
+
+/* Re-assert white text specifically inside the hero banner, since the rule
+   above targets headings/paragraphs directly and would otherwise win over
+   inherited color. */
+.hero-banner, .hero-banner h1, .hero-banner p {
+    color: #ffffff !important;
+}
+
+/* ---------------- Native bordered containers (st.container(border=True)) ---
+   Used for chart cards, word-cloud cards and the predictor card. Using a
+   real Streamlit container instead of a hand-rolled <div> avoids the bug
+   where a <div> opened in one st.markdown() call can't be closed in a
+   later call. */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    background: #ffffff;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 16px rgba(31, 17, 71, 0.07);
+    padding: 6px 6px 2px 6px;
+}
+
+/* ---------------- Sidebar ---------------- */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1f1147 0%, #3b1f75 100%);
+}
+section[data-testid="stSidebar"] * {
+    color: #f4f2ff !important;
+}
+
+/* ---------------- Sidebar nav buttons (replaces streamlit-option-menu) ---- */
+section[data-testid="stSidebar"] div[data-testid="stButton"] button {
+    background-color: transparent !important;
+    color: #f4f2ff !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    border-radius: 10px !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 4px !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] button p {
+    color: inherit !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
+    background-color: #3b1f75 !important;
+    color: #ffffff !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] button[kind="primary"] {
+    background-color: #6C63FF !important;
+    color: #ffffff !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] button[kind="primary"]:hover {
+    background-color: #6C63FF !important;
+}
+.sidebar-logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    padding: 18px 0 6px 0;
+}
+.sidebar-logo span {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+/* ---------------- Hero banner ---------------- */
+.hero-banner {
+    background: linear-gradient(120deg, #6C63FF 0%, #8f6bff 50%, #ff6bcb 100%);
+    padding: 42px 36px;
+    border-radius: 18px;
+    color: white;
+    margin-bottom: 26px;
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.35);
+}
+.hero-banner h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 800;
+}
+.hero-banner p {
+    margin-top: 8px;
+    font-size: 16px;
+    opacity: 0.92;
+}
+
+/* ---------------- Generic page header ---------------- */
+.page-header {
+    background: white;
+    padding: 26px 30px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 18px rgba(31, 17, 71, 0.06);
+    border-left: 6px solid #6C63FF;
+}
+.page-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f1147;
+}
+.page-header p {
+    margin-top: 4px;
+    color: #6b6884;
+    font-size: 14px;
+}
+
+/* ---------------- Metric cards ---------------- */
+.metric-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(31, 17, 71, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 10px;
+}
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(31, 17, 71, 0.14);
+}
+.metric-icon {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+.metric-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1f1147;
+}
+.metric-label {
+    font-size: 13px;
+    color: #6b6884;
+    margin-top: 2px;
+}
+
+/* ---------------- Workflow step cards ---------------- */
+.step-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(31, 17, 71, 0.06);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+.step-card:hover {
+    transform: translateY(-3px);
+}
+.step-num {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-weight: 800;
+    font-size: 20px;
+    color: #e4e1fb;
+}
+.step-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.step-title {
+    font-weight: 700;
+    color: #1f1147;
+    font-size: 15px;
+}
+.step-desc {
+    font-size: 13px;
+    color: #6b6884;
+    margin-top: 4px;
+}
+
+/* ---------------- Chart / wordcloud cards ---------------- */
+.chart-card, .wordcloud-card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 4px 16px rgba(31, 17, 71, 0.07);
+    margin-bottom: 16px;
+}
+
+/* ---------------- Predictor card ---------------- */
+.predictor-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(31, 17, 71, 0.07);
+    margin-bottom: 18px;
+}
+
+.stButton>button {
+    background: linear-gradient(120deg, #6C63FF, #8f6bff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(108, 99, 255, 0.35);
+    color: white;
+}
+
+/* ---------------- Result cards ---------------- */
+.result-card {
+    border-radius: 16px;
+    padding: 26px;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+.result-positive {
+    background: linear-gradient(120deg, #d9fbe6, #b9f5d0);
+    border: 1px solid #22c55e;
+}
+.result-negative {
+    background: linear-gradient(120deg, #ffe0e0, #ffc9c9);
+    border: 1px solid #ef4444;
+}
+.result-emoji {
+    font-size: 44px;
+}
+.result-label {
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 6px;
+    color: #1f1147;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
