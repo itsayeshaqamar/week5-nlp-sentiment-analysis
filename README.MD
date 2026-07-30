@@ -100,9 +100,6 @@ WEEK5_NLP_SENTIMENT_ANALYSIS/
 ├── 1.png
 │── 2.png
 │
-├── .streamlit/
-│   └── config.toml
-│
 ├── app.py
 │
 ├── utils.py
